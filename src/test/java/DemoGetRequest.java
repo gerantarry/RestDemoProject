@@ -20,9 +20,10 @@ public class DemoGetRequest {
                 .get("https://jsonplaceholder.typicode.com/posts/1")
             .then()
                 .statusCode(200)
-                .statusLine("HTTP/1.1 200 OK")
+               // .statusLine("HTTP/1.1 200 OK")
                 .assertThat().body("userId", equalTo(1))
-                .header("Content-Type","application/json; charset=utf-8");
+                .header("Content-Type","application/json; charset=utf-8")
+                .log().body();
 
     }
 
