@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 
-public class DemoGetRequest {
+public class GetRequestTest {
 
     @Test
     public void Demo1_GET_Request(){

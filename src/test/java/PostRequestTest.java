@@ -8,14 +8,14 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 
-public class DemoPostRequest {
+public class PostRequestTest {
 HashMap map = new HashMap();
 
     @BeforeClass
     public void postData(){
-        map.put("userId", MyRestUtils.getUserId());
-        map.put("title",MyRestUtils.getTitle());
-        map.put("body",MyRestUtils.getBody());
+        map.put("userId", MyRestUtilsTest.getUserId());
+        map.put("title", MyRestUtilsTest.getTitle());
+        map.put("body", MyRestUtilsTest.getBody());
 
         RestAssured.baseURI="https://jsonplaceholder.typicode.com";
         RestAssured.basePath="/posts";

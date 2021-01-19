@@ -1,7 +1,7 @@
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
 
-public class MyRestUtils {
+public class MyRestUtilsTest {
     @Test
     public static int getUserId() {
         int generatedInt = (int) (Math.random() * 100);
