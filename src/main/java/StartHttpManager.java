@@ -1,9 +1,9 @@
 import java.io.IOException;
 
 public class StartHttpManager {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
         MyHttpManager ob1 = new MyHttpManager("https://jsonplaceholder.typicode.com",
-                "/comments","post");
+                "/posts/2","puT");
 
 
     }

@@ -1,4 +1,4 @@
-/*
+package exampleRequests;/*
 given()
     set cookies, add auth, add param, set headers info etc...
 when()

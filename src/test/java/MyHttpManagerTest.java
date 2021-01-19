@@ -1,6 +1,7 @@
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.*;
@@ -9,7 +10,7 @@ public class MyHttpManagerTest {
     HashMap postData = new HashMap();
 
     @Test
-    public void GetRequest() {
+    public void GetRequestTest() {
 
         Response response =
                 given()
@@ -25,22 +26,21 @@ public class MyHttpManagerTest {
     }
 
     @Test
-    public void PostRequest()  {
+    public void PostRequestTest() throws java.io.FileNotFoundException {
         baseURI="https://jsonplaceholder.typicode.com";
         basePath="/comments";
 
-        postData.put("userId",1956);
-
-
+        FileInputStream fData = new FileInputStream("src/main/resources/postData.json");
 
         //формирование запроса
         Response response =
         given()
                 .contentType("application/json; charset=utf-8")
-                .body(postData)
+                .body(fData)
                 .when()
                     .post()
                 .then()
+                    .statusCode(201)
                     .extract().response();
 
         String JsonAsString = response.asString();
@@ -48,6 +48,26 @@ public class MyHttpManagerTest {
         System.out.println("ПРОВЕРКА:\n " + JsonAsString);
 
 
+
+    }
+
+    @Test
+    public void PutRequestTest() throws java.io.FileNotFoundException{
+        baseURI="https://jsonplaceholder.typicode.com";
+        basePath="/posts/2";
+
+        FileInputStream fData = new FileInputStream("src/main/resources/putData.json");
+
+        Response response = given()
+                .contentType("application/json; charset=utf-8")
+                .body(fData)
+                .when()
+                .put()
+                .then()
+                .extract().response();
+        String JsonAsString = response.asString();
+
+        System.out.println(JsonAsString);
 
     }
 }
