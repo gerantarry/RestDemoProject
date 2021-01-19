@@ -3,9 +3,10 @@ import java.io.FileInputStream;
 import static io.restassured.RestAssured.*;
 
 public class MyRestUtils {
-    public static String GetRequest(String host, String endpoint) {
+    public static void GetRequest(String host, String endpoint) {
         baseURI = host;
         basePath = endpoint;
+
         Response response =
                 given()
                         .when()
@@ -16,7 +17,7 @@ public class MyRestUtils {
 
         System.out.println("ПРОВЕРКА: \n" + JsonAsString);
 
-        return JsonAsString;
+
     }
 
     public static String PostRequest(String host, String endpoint) throws java.io.FileNotFoundException {
@@ -55,6 +56,23 @@ public class MyRestUtils {
                 .body(fData)
                 .when()
                 .put()
+                .then()
+                .extract().response();
+        String JsonAsString = response.asString();
+
+        System.out.println(JsonAsString);
+
+        return JsonAsString;
+    }
+
+    public static String DeleteRequest(String host, String endpoint){
+        baseURI=host;
+        basePath=endpoint;
+
+        Response response = given()
+                .contentType("application/json; charset=utf-8")
+                .when()
+                .delete()
                 .then()
                 .extract().response();
         String JsonAsString = response.asString();

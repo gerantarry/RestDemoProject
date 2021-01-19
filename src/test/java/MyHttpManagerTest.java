@@ -70,4 +70,21 @@ public class MyHttpManagerTest {
         System.out.println(JsonAsString);
 
     }
+
+    @Test
+    public void DeleteRequestTest(){
+        baseURI="https://jsonplaceholder.typicode.com";
+        basePath="/posts/2";
+
+        Response response = given()
+                .contentType("application/json; charset=utf-8")
+                .when()
+                .delete()
+                .then()
+                .statusCode(200)
+                .extract().response();
+        String JsonAsString = response.asString();
+
+        System.out.println(JsonAsString);
+    }
 }

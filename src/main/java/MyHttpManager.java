@@ -1,8 +1,3 @@
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
-
-import static io.restassured.RestAssured.*;
-
 public class MyHttpManager {
     String h, e, m;
 
@@ -34,7 +29,12 @@ public class MyHttpManager {
             }
             break;
           }
+            case("delete"):
+                MyRestUtils.DeleteRequest(h,e);
+                break;
 
+            default:
+                System.out.println("method not found");
         }
     }
 }
