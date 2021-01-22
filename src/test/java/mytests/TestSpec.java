@@ -5,7 +5,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-
 public class TestSpec {
 
     @Test(priority = 1)
@@ -86,16 +85,4 @@ public class TestSpec {
 
         RespOutTest(response);
     }
-
-
 }
-  /* .contentType("application/json; charset=utf-8")
-                .body(fData)
-                .when()
-                .put()
-                .then()
-                .assertThat().statusCode(200)
-                .extract().response();
-                */
-
-
