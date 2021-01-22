@@ -1,85 +1,34 @@
-import io.restassured.response.Response;
-import java.io.FileInputStream;
 import static io.restassured.RestAssured.*;
+import io.restassured.response.Response;
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 
 public class MyRestUtils {
-    public static void GetRequest(String host, String endpoint) {
+
+    public static FileInputStream openJson() {
+        FileInputStream fData = null;
+        try {
+            fData = new FileInputStream("src/main/resources/putData.json");
+        } catch (FileNotFoundException exc) {
+            System.out.println(exc);
+        }
+        return fData;
+    }
+
+    public static void UriPath(String host, String endpoint) {
         baseURI = host;
         basePath = endpoint;
 
-        Response response =
-                given()
-                        .when()
-                        .get(host + endpoint)
-                        .then()
-                        .extract().response();
-        String JsonAsString = response.asString();
-
-        System.out.println("ПРОВЕРКА: \n" + JsonAsString);
-
-
     }
 
-    public static String PostRequest(String host, String endpoint) throws java.io.FileNotFoundException {
+    public static void RespOut(Response response) {
 
-        baseURI = host;
-        basePath = endpoint;
-
-        FileInputStream fData = new FileInputStream("src/main/resources/postData.json");
-
-        //формирование запроса
-        Response response =
-                given()
-                        .contentType("application/json; charset=utf-8")
-                        .body(fData)
-                        .when()
-                        .post()
-                        .then()
-                        .extract().response();
-
-        String JsonAsString = response.asString();
-
-        System.out.println("ПРОВЕРКА:\n " + JsonAsString);
-
-
-        return JsonAsString;
+        if (response!=null){
+            String JsonAsString = response.asString();
+        System.out.println("ПРОВЕРКА: \n" + JsonAsString);}
+        else System.out.println("ПРОВЕРКА: пустое поле ответа");
     }
-
-    public static String PutRequest (String host, String endpoint) throws java.io.FileNotFoundException{
-        baseURI=host;
-        basePath=endpoint;
-
-        FileInputStream fData = new FileInputStream("src/main/resources/putData.json");
-
-        Response response = given()
-                .contentType("application/json; charset=utf-8")
-                .body(fData)
-                .when()
-                .put()
-                .then()
-                .extract().response();
-        String JsonAsString = response.asString();
-
-        System.out.println(JsonAsString);
-
-        return JsonAsString;
-    }
-
-    public static String DeleteRequest(String host, String endpoint){
-        baseURI=host;
-        basePath=endpoint;
-
-        Response response = given()
-                .contentType("application/json; charset=utf-8")
-                .when()
-                .delete()
-                .then()
-                .extract().response();
-        String JsonAsString = response.asString();
-
-        System.out.println(JsonAsString);
-
-        return JsonAsString;
-    }
-
 }

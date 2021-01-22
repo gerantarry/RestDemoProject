@@ -1,19 +1,33 @@
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import static io.restassured.RestAssured.given;
+
 public class MyHttpManager {
-    String h, e, m;
 
     //конструктор
     MyHttpManager(String host, String endpoint, String httpMethod) {
-        h = host;
-        e = endpoint;
-        m = httpMethod.toLowerCase();
 
+        MyRestUtils.UriPath(host,endpoint);
+
+        Response response =
+                given()
+                        .contentType(ContentType.JSON)
+                        .when()
+                            .body(MyRestUtils.openJson())
+                            .request(httpMethod.toLowerCase())
+                        .then()
+                            .extract().response();
+
+        MyRestUtils.RespOut(response);
+
+/*
         switch (m) {
             case ("get"):
-                MyRestUtils.GetRequest(h, e);
+                MyRestUtils.GetRequest(host, endpoint);
                 break;
             case ("post"): {
                 try {
-                    MyRestUtils.PostRequest(h, e);
+                    MyRestUtils.PostRequest(host, endpoint);
                 } catch (java.io.FileNotFoundException exc) {
                     System.out.println("file not found");
                 }
@@ -23,18 +37,19 @@ public class MyHttpManager {
           case("put"):{
             try {
 
-                MyRestUtils.PutRequest(h,e);
+                MyRestUtils.PutRequest(host,endpoint,m);
             }catch (java.io.FileNotFoundException exc){
                 System.out.println("file not found");
             }
             break;
           }
             case("delete"):
-                MyRestUtils.DeleteRequest(h,e);
+                MyRestUtils.DeleteRequest(host,endpoint,m);
                 break;
 
             default:
                 System.out.println("method not found");
         }
+        */
     }
 }
