@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Gerant/IdeaProjects/RestDemoProject/src/test/java/mytests/TestSpec.java">
+        <classes>
+            <class name="mytests.TestSpec">
+                <methods>
+                    <include name="PutRequestTest"/>
+                    <include name="GetRequestTest"/>
+                    <include name="PostRequestTest"/>
+                    <include name="DeleteRequestTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

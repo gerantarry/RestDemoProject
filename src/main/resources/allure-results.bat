@@ -1,0 +1,1 @@
+allure serve C:\Users\Gerant\IdeaProjects\RestDemoProject\allure-results
