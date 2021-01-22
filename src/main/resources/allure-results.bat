@@ -1,1 +1,2 @@
-allure serve C:\Users\Gerant\IdeaProjects\RestDemoProject\allure-results
+#указать путь
+allure serve C:\..\allure-results
